@@ -25,7 +25,7 @@ class App extends Component {
      .then(res => {
       this.setState(prevState => {
         return{
-        tweedDB: this.data.tweeds,
+        tweedDB: this.data,
       }
       
      });
