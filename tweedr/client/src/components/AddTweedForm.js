@@ -1,4 +1,4 @@
-import React, {Component} from React;
+import React, { Component } from "react";
 
 class AddTweedForm extends Component {
   render() {
@@ -21,4 +21,4 @@ class AddTweedForm extends Component {
   }
 }
 
-export default addTweedForm;
+export default AddTweedForm;
