@@ -1,12 +1,10 @@
-// Holds one individual tweed
+
 import React, { Component } from 'react';
 
 class Tweed extends Component {
     
     // https://stackoverflow.com/questions/175554/how-to-convert-milliseconds-into-human-readable-form
 conversion (millisecs) {
-    // console.log('conversion happening!! ')
-    // milisecs are coming in as str, we need them as Int
     let mili = parseInt(millisecs,10);
     let date = new Date(mili);
     let days = date.getUTCDate()
