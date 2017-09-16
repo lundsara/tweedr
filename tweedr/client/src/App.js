@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       tweedDB: [],
       inputTimeValue: '',
-      inputTweedValue: '',
+      inputTextValue: '',
     }
 
     this.handleInputTextChange = this.handleInputTextChange.bind(this);
@@ -20,16 +20,16 @@ class App extends Component {
 
 
   componentDidMount() {
-    console.log('data mount');
-    axios('http://localhost:3001/api/tweeds')
-     .then(res => {
-      this.setState(prevState => {
-        return{
-        tweedDB: this.data,
-      }
-      
-     });
-    });
+    console.log('App.js mount');
+    axios('http://localhost:3002/api/tweeds')
+    // .then(res => {res.json()})
+     .then((res) => {
+      console.table(res.data.data.tweeds);
+      this.setState({tweedDB: res.data.data.tweeds});
+      })
+      .catch(err => {
+        console.log('data didnt come back!');
+      });
     }
 
     handleInputTextChange(event) {
@@ -41,18 +41,20 @@ class App extends Component {
     handleTweedSubmit(event) {
       console.log('handling submit')
       event.preventDefault();
-      event.target.text = '';
-      axios.post('http://localhost:3001/api/tweeds', {
-        text: this.state.inputTextValue,
+      // console.log(event.target.children)
+      // event.target.text = '';
+      axios.post('http://localhost:3002/api/tweeds', {
+        tweed: this.state.inputTextValue,
       })
         .then(res => {
-          if(res.data.tweeds.id !== undefined) {
-            const newTweed = {
-              text: res.data.tweeds.tweed_text,
-            }
+          console.log("the data that came back: ", res.data.data.tweed);
+          if(res.data.data.tweed.id !== undefined) {
+            // const newTweed = {
+            //   text: res.data.data.tweed.tweed_text,
+            // }
             this.setState((prevState) => {
               return {
-                  tweedDB: prevState.tweeds.concat(newTweed),
+                  tweedDB: prevState.tweedDB.concat(res.data.data.tweed),
                 }
             })
           }
