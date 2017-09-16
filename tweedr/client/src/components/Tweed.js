@@ -7,13 +7,13 @@ class Tweed extends Component {
 conversion (millisecs) {
     // console.log('conversion happening!! ')
     // milisecs are coming in as str, we need them as Int
-    let mili = parseInt(millisecs);
+    let mili = parseInt(millisecs,10);
     let date = new Date(mili);
-    let days = date.getUTCDate()-1
+    let days = date.getUTCDate()
     let hours = date.getUTCHours()
     let mins = date.getUTCMinutes()
     let sec = date.getUTCSeconds()
-    let str = `${days} days, ${hours} hours, ${mins} minutes, ${sec} seconds`;
+    let str = `${days}th of Sept`;
     // str += date.getUTCDate()-1 + " days, ";
     // str += date.getUTCHours() + " hours, ";
     // str += date.getUTCMinutes() + " minutes, ";
