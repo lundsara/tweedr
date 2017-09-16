@@ -10,7 +10,6 @@ class App extends Component {
     super();
     this.state = {
       tweedDB: [],
-      inputTimeValue: '',
       inputTextValue: '',
     }
 
@@ -45,6 +44,7 @@ class App extends Component {
       // event.target.text = '';
       axios.post('http://localhost:3002/api/tweeds', {
         tweed: this.state.inputTextValue,
+        time: this.state.inputTimeValue,
       })
         .then(res => {
           console.log("the data that came back: ", res.data.data.tweed);
@@ -68,6 +68,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Tweeder</h2>
+          <p>It's better than Twitter...</p>
         </div>
           <AddTweedForm
           handleTweedSubmit={this.handleTweedSubmit}
