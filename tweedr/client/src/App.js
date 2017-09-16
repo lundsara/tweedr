@@ -40,8 +40,8 @@ class App extends Component {
     handleTweedSubmit(event) {
       console.log('handling submit')
       event.preventDefault();
-      // console.log(event.target.children)
-      // event.target.text = '';
+      event.target.value = '';
+      console.log(event.target.value)
       axios.post('http://localhost:3002/api/tweeds', {
         tweed: this.state.inputTextValue,
         time: this.state.inputTimeValue,
@@ -49,9 +49,6 @@ class App extends Component {
         .then(res => {
           console.log("the data that came back: ", res.data.data.tweed);
           if(res.data.data.tweed.id !== undefined) {
-            // const newTweed = {
-            //   text: res.data.data.tweed.tweed_text,
-            // }
             this.setState((prevState) => {
               return {
                   tweedDB: prevState.tweedDB.concat(res.data.data.tweed),
